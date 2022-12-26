@@ -18,6 +18,15 @@ class Shortener {
         }
     }
 
+    fun decode(shortUrl: String): String? {
+        val base62Encoded = shortUrl.substring(shortUrl.lastIndexOf("/") + 1)
+        var decode: Long = 0
+        for (element in base62Encoded) {
+            decode = decode * 62 + base62Characters.indexOf("" + element)
+        }
+        return indexToUrl[decode]
+    }
+
     private fun base62Encode(value: Long): String {
         var currentValue = value
         val sb = StringBuilder()
