@@ -15,6 +15,7 @@ internal class CreateShortenerUrlTest {
     fun `should return shortener url for given url`() {
         val original = "http://dkb-code.com"
         val actual = createShortenerUrl.create(original)
+
         val expected = "http//shortener.com/1"
 
         assertEquals(actual, expected)

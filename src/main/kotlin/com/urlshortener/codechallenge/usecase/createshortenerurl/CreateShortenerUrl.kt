@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service
 class CreateShortenerUrl {
     private val shortener = Shortener()
     fun create(original: String): String = shortener.encode(original)
+
 }
