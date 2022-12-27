@@ -5,7 +5,7 @@ class Shortener {
     private var indexToUrl = HashMap<Long, String>()
     private var urlToIndex = HashMap<String, Long>()
     private var base62Characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-    private val BASE_URL = "http//shortener.com/"
+    private val BASE_URL = "http://shortener.com/"
 
     fun encode(originalUrl: String?): String {
         return if (urlToIndex.containsKey(originalUrl)) {

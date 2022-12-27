@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 internal class ShortenerTest {
 
-    private val BASE_URL = "http//shortener.com/"
+    private val BASE_URL = "http://shortener.com/"
 
     @Test
     fun `should return shortener for given long url`() {

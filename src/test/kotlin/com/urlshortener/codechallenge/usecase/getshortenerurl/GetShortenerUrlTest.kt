@@ -3,6 +3,7 @@ package com.urlshortener.codechallenge.usecase.getshortenerurl
 import com.urlshortener.codechallenge.domain.Shortener
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 
@@ -18,8 +19,17 @@ internal class GetShortenerUrlTest {
         val shortUrl = shortener.encode(original)
 
         val actual = getShortenerUrl.get(shortUrl)
-        val expected = "http//shortener.com/1"
+        val expected = "http://shortener.com/1"
 
         assertEquals(expected, actual)
+    }
+
+    @Test
+    fun `should throw exception for given url`() {
+        val original = "http://dkb-code.com/iv143#\$@# df"
+
+        assertThrows<IllegalArgumentException> {
+            getShortenerUrl.get(original)
+        }
     }
 }
