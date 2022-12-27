@@ -20,6 +20,9 @@ class ShortenerControllerTest {
     @MockBean
     lateinit var createShortenerUrl: CreateShortenerUrl
 
+    @MockBean
+    lateinit var getShortenerUrl: GetShortenerUrl
+
     @Autowired
     private lateinit var mvc: MockMvc
 
@@ -36,6 +39,21 @@ class ShortenerControllerTest {
                 .characterEncoding("utf-8")
         )
             .andExpect(status().`is`(HttpStatus.CREATED.value()))
+
+    }
+
+    @Test
+    fun `should return original url for given shortener url`() {
+        val original = "http://dkb-code.com"
+        val shortUrl = "http://shortener.com/1"
+
+        whenever(getShortenerUrl.get(shortUrl)).thenReturn(original)
+        mvc.perform(
+            get("${BASE_URL}?url=${original}")
+                .content(createdPayload())
+                .characterEncoding("utf-8")
+        )
+            .andExpect(status().`is`(HttpStatus.OK.value()))
 
     }
 
