@@ -1,9 +1,11 @@
 package com.urlshortener.codechallenge.domain
 
+import java.util.concurrent.ConcurrentHashMap
+
 class Shortener {
     private var index = 1L
-    private var indexToUrl = HashMap<Long, String>()
-    private var urlToIndex = HashMap<String, Long>()
+    private var indexToUrl = ConcurrentHashMap<Long, String>()
+    private var urlToIndex = ConcurrentHashMap<String, Long>()
     private var base62Characters = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
     private val BASE_URL = "http://shortener.com/"
 
