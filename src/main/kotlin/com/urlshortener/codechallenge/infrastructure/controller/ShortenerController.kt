@@ -1,14 +1,12 @@
 package com.urlshortener.codechallenge.infrastructure.controller
 
 import com.urlshortener.codechallenge.usecase.createshortenerurl.CreateShortenerUrl
-import com.urlshortener.codechallenge.usecase.getshortenerurl.GetShortenerUrl
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/api/v1")
-class ShortenerController(private val createShortenerUrl: CreateShortenerUrl,
-    private val getShortenerUrl: GetShortenerUrl) {
+class ShortenerController(private val createShortenerUrl: CreateShortenerUrl) {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -16,6 +14,6 @@ class ShortenerController(private val createShortenerUrl: CreateShortenerUrl,
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    fun get(@RequestParam url:String):String? = getShortenerUrl.get(url)
+    fun get(@RequestParam url: String): String? = createShortenerUrl.get(url)
     data class RequestUrl(val url: String)
 }

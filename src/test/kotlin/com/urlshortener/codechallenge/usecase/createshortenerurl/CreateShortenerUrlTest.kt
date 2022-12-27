@@ -1,5 +1,6 @@
 package com.urlshortener.codechallenge.usecase.createshortenerurl
 
+import com.urlshortener.codechallenge.domain.Shortener
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -28,6 +29,26 @@ internal class CreateShortenerUrlTest {
 
         assertThrows<IllegalArgumentException> {
             createShortenerUrl.create(original)
+        }
+    }
+
+    @Test
+    fun `should return original url for given shortener url`() {
+        val original = "http://dkb-code.com"
+        val shortener = Shortener()
+        val shortUrl = shortener.encode(original)
+
+        val actual = createShortenerUrl.get(shortUrl)
+
+        assertEquals(original, actual)
+    }
+
+    @Test
+    fun `should throw exception for given long url`() {
+        val original = "http://dkb-code.com/iv143#\$@# df"
+
+        assertThrows<IllegalArgumentException> {
+            createShortenerUrl.get(original)
         }
     }
 }

@@ -22,6 +22,6 @@ internal class ShortenerTest {
         val originalUrl = "dkb-code.com"
         val shorterUrl = shortener.encode(originalUrl)
         val actual = shortener.decode(shorterUrl)
-        assertEquals(actual, originalUrl)
+        assertEquals(originalUrl, actual)
     }
 }

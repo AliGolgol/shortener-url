@@ -11,4 +11,9 @@ class CreateShortenerUrl {
         original.isValidUrl()
         return shortener.encode(original)
     }
+
+    fun get(shortUrl: String): String? {
+        shortUrl.isValidUrl()
+        return shortener.decode(shortUrl)
+    }
 }

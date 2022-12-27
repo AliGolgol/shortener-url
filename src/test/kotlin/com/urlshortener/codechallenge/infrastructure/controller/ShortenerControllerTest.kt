@@ -1,7 +1,6 @@
 package com.urlshortener.codechallenge.infrastructure.controller
 
 import com.urlshortener.codechallenge.usecase.createshortenerurl.CreateShortenerUrl
-import com.urlshortener.codechallenge.usecase.getshortenerurl.GetShortenerUrl
 import org.junit.jupiter.api.Test
 import org.mockito.kotlin.whenever
 import org.springframework.beans.factory.annotation.Autowired
@@ -19,9 +18,6 @@ class ShortenerControllerTest {
 
     @MockBean
     lateinit var createShortenerUrl: CreateShortenerUrl
-
-    @MockBean
-    lateinit var getShortenerUrl: GetShortenerUrl
 
     @Autowired
     private lateinit var mvc: MockMvc
@@ -47,14 +43,13 @@ class ShortenerControllerTest {
         val original = "http://dkb-code.com"
         val shortUrl = "http://shortener.com/1"
 
-        whenever(getShortenerUrl.get(shortUrl)).thenReturn(original)
+        whenever(createShortenerUrl.get(shortUrl)).thenReturn(original)
         mvc.perform(
             get("${BASE_URL}?url=${original}")
                 .content(createdPayload())
                 .characterEncoding("utf-8")
         )
             .andExpect(status().`is`(HttpStatus.OK.value()))
-
     }
 
     private fun createdPayload(): String {
