@@ -26,4 +26,6 @@ sudo docker run -p 8080:8080 shortenerurl-service
 
 GET api/v1/shourtUrl
 POST api/v1/data/shourten
+
+API Doc: /localhost:8080/documentations
 ```
