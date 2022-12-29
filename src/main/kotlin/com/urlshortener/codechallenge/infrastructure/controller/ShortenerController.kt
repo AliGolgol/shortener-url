@@ -8,11 +8,11 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/api/v1")
 class ShortenerController(private val createShortenerUrl: CreateShortenerUrl) {
 
-    @PostMapping
+    @PostMapping("/data/shorten")
     @ResponseStatus(HttpStatus.CREATED)
     fun create(@RequestBody url: RequestUrl): String = createShortenerUrl.create(url.url)
 
-    @GetMapping
+    @GetMapping("/shortUrl")
     @ResponseStatus(HttpStatus.OK)
     fun get(@RequestParam url: String): String? = createShortenerUrl.get(url)
     data class RequestUrl(val url: String)

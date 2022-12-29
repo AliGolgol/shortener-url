@@ -29,7 +29,7 @@ class ShortenerControllerTest {
 
         whenever(createShortenerUrl.create(original)).thenReturn(expected)
         mvc.perform(
-            post(BASE_URL)
+            post("${BASE_URL}/data/shorten")
                 .contentType(MediaType.APPLICATION_JSON)
                 .content(createdPayload())
                 .characterEncoding("utf-8")
@@ -45,7 +45,7 @@ class ShortenerControllerTest {
 
         whenever(createShortenerUrl.get(shortUrl)).thenReturn(original)
         mvc.perform(
-            get("${BASE_URL}?url=${original}")
+            get("${BASE_URL}/shortUrl?url=${original}")
                 .content(createdPayload())
                 .characterEncoding("utf-8")
         )
